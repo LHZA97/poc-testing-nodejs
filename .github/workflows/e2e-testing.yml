@@ -28,7 +28,7 @@ jobs:
         run: npm test -- --coverage
 
       - name: Upload Jest coverage report as artifact
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: jest-coverage-report
           path: coverage/lcov-report
@@ -36,9 +36,9 @@ jobs:
 
       - name: Debugging Information
         run: |
-          ls -l $HOME
-          ls -l $HOME/katalon
-        working-directory: $HOME
+          ls -l
+          ls -l katalon
+        working-directory: /home/runner
 
       - name: Install Katalon Studio
         run: |
