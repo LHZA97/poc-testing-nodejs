@@ -37,24 +37,28 @@ jobs:
       - name: Debugging Information
         run: |
           ls -l
-          ls -l katalon
+          mkdir -p katalon
+          ls -l
         working-directory: /home/runner
+
+      - name: Install dependencies
+        run: npm install
 
       - name: Install Katalon Studio
         run: |
-          mkdir -p $HOME/katalon
-          curl -L https://download.katalon.com/7.9.1/Katalon_Studio_Linux_64-7.9.1.tar.gz | tar xvz -C $HOME/katalon --strip-components=1
+          mkdir -p katalon
+          curl -L https://download.katalon.com/7.9.1/Katalon_Studio_Linux_64-7.9.1.tar.gz | tar xvz -C katalon --strip-components=1
 
       - name: Grant execution permissions to Katalon script
         run: |
-          chmod +x $HOME/katalon/katalonc.sh
-        working-directory: $HOME
+          chmod +x katalon/katalonc.sh
+        working-directory: /home/runner
 
       - name: Run Katalon tests
         run: |
-          cd $HOME/katalon
+          cd katalon
           ./katalonc.sh -noSplash -runMode=console -projectPath=/path/to/your/katalon/project -retry=0 -testSuiteCollectionPath=Test Suites/Collection
-        working-directory: $HOME
+        working-directory: /home/runner
 
       - name: Upload Katalon reports
         uses: actions/upload-artifact@v2
