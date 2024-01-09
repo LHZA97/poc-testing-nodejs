@@ -27,18 +27,30 @@ jobs:
       - name: Run Jest tests
         run: npm test
 
+      - name: Print Jest test results
+        run: cat ./coverage/lcov-report/index.html
+
+      - name: Debugging Information
+        run: |
+          ls -l $HOME
+          ls -l $HOME/katalon
+        working-directory: $HOME
+
       - name: Install Katalon Studio
         run: |
-          mkdir -p katalon
-          curl -L https://download.katalon.com/7.9.1/Katalon_Studio_Linux_64-7.9.1.tar.gz | tar xvz -C katalon --strip-components=1
+          mkdir -p $HOME/katalon
+          curl -L https://download.katalon.com/7.9.1/Katalon_Studio_Linux_64-7.9.1.tar.gz | tar xvz -C $HOME/katalon --strip-components=1
+
+      - name: Grant execution permissions to Katalon script
+        run: |
+          chmod +x $HOME/katalon/katalonc.sh
+        working-directory: $HOME
 
       - name: Run Katalon tests
         run: |
-          cd ~/katalon
+          cd $HOME/katalon
           ./katalonc.sh -noSplash -runMode=console -projectPath=/path/to/your/katalon/project -retry=0 -testSuiteCollectionPath=Test Suites/Collection
-
-      - name: Print Jest test results
-        run: cat ./coverage/lcov-report/index.html
+        working-directory: $HOME
 
       - name: Upload Katalon reports
         uses: actions/upload-artifact@v2
