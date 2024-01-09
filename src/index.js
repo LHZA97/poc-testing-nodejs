@@ -21,8 +21,11 @@ const app = express();
 const PORT = process.env.PORT;
 
 app.use(bodyParser.json());
+
 app.use("/api/pets", petRoutes);
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
+
+export default app; // Export the app for testing purposes

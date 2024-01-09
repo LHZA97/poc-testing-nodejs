@@ -1,11 +1,21 @@
-// test/pet.test.js
 import supertest from "supertest";
 import app from "../src/index.js";
+import mongoose from "mongoose";
 
 const request = supertest(app);
 
 describe("Pet API Tests", () => {
   let petId;
+
+  beforeAll((done) => {
+    done();
+  });
+
+  afterAll((done) => {
+    // Closing the DB connection allows Jest to exit successfully.
+    mongoose.connection.close();
+    done();
+  });
 
   it("should create a new pet", async () => {
     const response = await request.post("/api/pets").send({
