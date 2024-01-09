@@ -25,10 +25,14 @@ jobs:
         run: npm ci
 
       - name: Run Jest tests
-        run: npm test
+        run: npm test -- --coverage
 
-      - name: Print Jest test results
-        run: cat ./coverage/lcov-report/index.html
+      - name: Upload Jest coverage report as artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: jest-coverage-report
+          path: coverage/lcov-report
+          if-no-files-found: error
 
       - name: Debugging Information
         run: |
