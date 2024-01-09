@@ -9,7 +9,7 @@ on:
       - main
 
 jobs:
-  test:
+  Unit_Tests:
     runs-on: ubuntu-latest
 
     steps:
@@ -34,7 +34,7 @@ jobs:
 
       - name: Run Katalon tests
         run: |
-          cd katalon
+          cd ~/katalon
           ./katalonc.sh -noSplash -runMode=console -projectPath=/path/to/your/katalon/project -retry=0 -testSuiteCollectionPath=Test Suites/Collection
 
       - name: Print Jest test results
