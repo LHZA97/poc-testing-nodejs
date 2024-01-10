@@ -3,7 +3,10 @@ name: CI/CD with SonarQube
 on:
   push:
     branches:
-      - sonarqube
+      - main
+  pull_request:
+    branches:
+      - main
 
 jobs:
   jest-tests:
