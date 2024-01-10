@@ -46,8 +46,9 @@ jobs:
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
           SONAR_HOST_URL: ${{ env.hostname }}
-        # with:
-        #   args: >
+        with:
+          args: >
+            -Dsonar.projectKey=LHZA97_poc-testing-nodejs_AYzxoyeny1DwTTyWH5LS
         #     -Dsonar.projectKey=poc-testing-nodejs
         #     -Dsonar.projectName=poc-testing-nodejs
         #     -Dsonar.sourceEncoding=UTF-8
