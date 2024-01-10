@@ -49,6 +49,7 @@ jobs:
         with:
           args: >
             -Dsonar.projectKey=LHZA97_poc-testing-nodejs_AYzxoyeny1DwTTyWH5LS
+            -Dsonar.sources=.
         #     -Dsonar.projectKey=poc-testing-nodejs
         #     -Dsonar.projectName=poc-testing-nodejs
         #     -Dsonar.sourceEncoding=UTF-8
