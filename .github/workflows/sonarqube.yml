@@ -44,11 +44,11 @@ jobs:
         uses: sonarsource/sonarqube-scan-action@master
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-          SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
+          SONAR_HOST_URL: ${{ env.hostname }}
         with:
           args: >
-            -Dsonar.projectKey=repo_name
-            -Dsonar.projectName=repo_name
+            -Dsonar.projectKey=$repo_name
+            -Dsonar.projectName=$repo_name
             -Dsonar.sourceEncoding=UTF-8
             -Dsonar.projectVersion=${{ github.run_number }} 
             -Dsonar.exclusions=node_modules/**/*
