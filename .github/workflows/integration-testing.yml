@@ -39,6 +39,7 @@ jobs:
 
         # Run the POSTMAN collection
       - name: Run Postman Tests
+        working-directory: ./
         # env:
         #   POSTMAN_API_KEY: ${{ secrets.POSTMAN_API_KEY }}
         run: |
