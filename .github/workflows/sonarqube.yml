@@ -38,7 +38,7 @@ jobs:
     #   url: ${{ env.hostname }}/dashboard?id=${{env.project_id}}
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           fetch-depth: 0 # Shallow clones should be disabled for a better relevancy of analysis
       - name: SonarQube Scan
@@ -49,7 +49,11 @@ jobs:
         with:
           args: >
             -Dsonar.projectKey=LHZA97_poc-testing-nodejs_AYzxoyeny1DwTTyWH5LS
-            -Dsonar.sources=.
+            -Dsonar.sources=src
+            -Dsonar.tests=test
+            -Dsonar.javascript.lcov.reportPaths=coverage/jest/lcov.info
+            -Dsonar.testExecutionReportPaths=coverage/jest/testlog.xml
+        #     -Dsonar.sources=.
         #     -Dsonar.projectKey=poc-testing-nodejs
         #     -Dsonar.projectName=poc-testing-nodejs
         #     -Dsonar.sourceEncoding=UTF-8
@@ -65,7 +69,7 @@ jobs:
 
     steps:
       - name: Check out code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v3
         with:
           fetch-depth: 0
 
