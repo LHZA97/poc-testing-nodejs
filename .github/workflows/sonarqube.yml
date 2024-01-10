@@ -36,7 +36,9 @@ jobs:
       - name: Set Project ID
         id: set-project-id
         run: |
-          repo_name=$(basename $GITHUB_REPOSITORY)
+          repo_full_name="${{ github.repository }}"
+          repo_name=$(basename $repo_full_name)
+          echo "Repository Name: $repo_name"
           echo "project_id=$repo_name" >> $GITHUB_ENV
       - name: SonarQube Scan
         uses: sonarsource/sonarqube-scan-action@master
@@ -63,7 +65,7 @@ jobs:
 
       - name: SonarQube Quality Gate
         uses: sonarsource/sonarqube-quality-gate-action@master
-        timeout-minutes: 5
+        timeout-minutes: 2
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
