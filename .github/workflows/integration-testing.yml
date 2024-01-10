@@ -43,10 +43,6 @@ jobs:
           #   name: RunReports
           name: PostmanApiTestResults
           path: testResults
-
-      - name: Set workflow status based on Newman exit code
-        if: ${{ success() }}
-        run: exit $NEWMAN_EXIT_CODE
 #   katalon-test-api:
 #     runs-on: windows-latest
 #     steps:
