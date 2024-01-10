@@ -29,15 +29,20 @@ jobs:
         # Run the POSTMAN collection
       - name: Run POSTMAN collection
         run: |
-          newman run VetApp.postman_collection.json -r htmlextra --reporter-htmlextra-export testResults/htmlreport.html --reporter-htmlextra-darkTheme  > testResults/runreport1.html
+          newman run VetApp.postman_collection.json -r htmlextra --reporter-htmlextra-export testResults/htmlreport.html --reporter-htmlextra-darkTheme > testResults/runreport1.html 2>&1
+          NEWMAN_EXIT_CODE=$?
 
         # Upload the contents of Test Results directory to workspace
       - name: Output the run Details
         uses: actions/upload-artifact@v2
         with:
-          name: RunReports
-          #name:PostmanApiTestResults
+          #   name: RunReports
+          name: PostmanApiTestResults
           path: testResults
+
+      - name: Set workflow status based on Newman exit code
+        if: ${{ success() }}
+        run: exit $NEWMAN_EXIT_CODE
 #   katalon-test-api:
 #     runs-on: windows-latest
 #     steps:
