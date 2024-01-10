@@ -27,9 +27,11 @@ jobs:
         run: mkdir -p testResults
 
         # Run the POSTMAN collection
-      - name: Run POSTMAN collection
+      - name: Run Postman Tests
         run: |
+          echo "Running Postman tests..."
           newman run VetApp.postman_collection.json -r htmlextra --reporter-htmlextra-export testResults/htmlreport.html --reporter-htmlextra-darkTheme > testResults/runreport1.html 2>&1
+          cat testResults/runreport1.html  # Print the contents for debugging
           NEWMAN_EXIT_CODE=$?
 
         # Upload the contents of Test Results directory to workspace
