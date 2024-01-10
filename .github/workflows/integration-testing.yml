@@ -7,7 +7,7 @@ jobs:
   postman-test-api:
     runs-on: ubuntu-latest
     permissions:
-      contents: read
+      contents: write
       packages: write
       id-token: write
     steps:
@@ -25,6 +25,7 @@ jobs:
         run: |
           npm install -g newman
           npm install -g newman-reporter-htmlextra
+          newman run
 
         # Make directory to upload the test results
       - name: Make Directory for results
@@ -32,6 +33,9 @@ jobs:
           mkdir testResults
           pwd
           ls -l
+
+      - name: Set permissions on the target directory
+        run: chmod -R 777 testResults/
 
         # Run the POSTMAN collection
       - name: Run Postman Tests
