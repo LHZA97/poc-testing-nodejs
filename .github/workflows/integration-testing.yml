@@ -42,7 +42,7 @@ jobs:
         # env:
         #   POSTMAN_API_KEY: ${{ secrets.POSTMAN_API_KEY }}
         run: |
-          newman run VetApp.postman_collection.json -r htmlextra --reporter-htmlextra-export testResults/htmlreport.html --reporter-htmlextra-darkTheme  > testResults/runreport1.html --insecure
+          newman run VetApp.postman_collection.json -k -r htmlextra --reporter-htmlextra-export testResults/htmlreport.html --reporter-htmlextra-darkTheme  > testResults/runreport1.html
 
         # Upload the contents of Test Results directory to workspace
       - name: Output the run Details
