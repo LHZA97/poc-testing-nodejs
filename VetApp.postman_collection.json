@@ -13,7 +13,12 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n  \"name\": \"Fluffy\",\n  \"species\": \"Cat\",\n  \"age\": 3,\n  \"owner\": \"Alice\"\n}"
+					"raw": "{\n  \"name\": \"Fluffy\",\n  \"species\": \"Cat\",\n  \"age\": 3,\n  \"owner\": \"Alice\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
 				},
 				"url": {
 					"raw": "{{base_url}}/api/pets",
@@ -75,7 +80,12 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n  \"name\": \"Whiskers\"\n}"
+					"raw": "{\n  \"name\": \"Whiskers\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
 				},
 				"url": {
 					"raw": "{{base_url}}/api/pets/{{petId}}",
