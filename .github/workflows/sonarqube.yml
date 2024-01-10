@@ -51,8 +51,7 @@ jobs:
             -Dsonar.projectKey=LHZA97_poc-testing-nodejs_AYzxoyeny1DwTTyWH5LS
             -Dsonar.sources=src
             -Dsonar.tests=test
-            -Dsonar.javascript.lcov.reportPaths=coverage/jest/lcov.info
-            -Dsonar.testExecutionReportPaths=coverage/jest/testlog.xml
+
         #     -Dsonar.sources=.
         #     -Dsonar.projectKey=poc-testing-nodejs
         #     -Dsonar.projectName=poc-testing-nodejs
