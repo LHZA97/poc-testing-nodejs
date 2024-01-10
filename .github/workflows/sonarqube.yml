@@ -3,10 +3,10 @@ name: CI/CD with SonarQube
 on:
   push:
     branches:
-      - main
+      - sonarqube
 
 jobs:
-  sonarqube-analysis:
+  jest-tests:
     runs-on: ubuntu-latest
 
     steps:
@@ -24,11 +24,37 @@ jobs:
       - name: Run Jest tests and generate coverage
         run: npm test -- --coverage
 
+  sonarqube-analysis:
+    runs-on: RUNNER-LINUX2-183
+    needs: jest-tests
+    env:
+      hostname: ${{ secrets.SONAR_HOST_URL }}
+    environment:
+      name: sonarqube
+      url: ${{ env.hostname }}/dashboard?id=${{env.project_id}}
+    steps:
+      - name: Set Project ID
+        id: set-project-id
+        run: |
+          repo_name=$(basename $GITHUB_REPOSITORY)
+          echo "project_id=$repo_name" >> $GITHUB_ENV
       - name: SonarQube Scan
         uses: sonarsource/sonarqube-scan-action@master
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
           SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
+        with:
+          args: >
+            -Dsonar.projectKey=repo_name
+            -Dsonar.projectName=repo_name
+            -Dsonar.sourceEncoding=UTF-8
+            -Dsonar.projectVersion=${{ github.run_number }} 
+            -Dsonar.pullrequest.key=${{ github.event.pull_request.number }} 
+            -Dsonar.pullrequest.branch=${{ github.head_ref }} 
+            -Dsonar.pullrequest.base=${{ github.base_ref }} 
+            -Dsonar.exclusions=node_modules/**/*
+            -Dsonar.projectVersion=${{ github.run_number }}
+            -Dsonar.java.binaries=.
 
   sonarqube-quality-gate:
     needs: sonarqube-analysis
