@@ -4,9 +4,12 @@ on:
   push:
     branches:
       - main
+  pull_request:
+    branches:
+      - main
 
 jobs:
-  sonarqube-analysis:
+  jest-tests:
     runs-on: ubuntu-latest
 
     steps:
@@ -24,11 +27,40 @@ jobs:
       - name: Run Jest tests and generate coverage
         run: npm test -- --coverage
 
+  sonarqube-analysis:
+    runs-on: ubuntu-latest
+    needs: jest-tests
+    permissions: read-all
+    env:
+      hostname: ${{ secrets.SONAR_HOST_URL }}
+    environment:
+      name: sonarqube
+      url: ${{ env.hostname }}/dashboard?id=${{env.project_id}}
+    steps:
+      - name: Set Project ID
+        id: set-project-id
+        run: |
+          repo_full_name="${{ github.repository }}"
+          repo_name=$(basename $repo_full_name)
+          echo "Repository Name: $repo_name"
+          echo "project_id=$repo_name" >> $GITHUB_ENV
       - name: SonarQube Scan
         uses: sonarsource/sonarqube-scan-action@master
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-          SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
+          SONAR_HOST_URL: ${{ env.hostname }}
+        with:
+          args: >
+            -Dsonar.projectKey=LHZA97_poc-testing-nodejs_AYzxoyeny1DwTTyWH5LS
+            -Dsonar.sources=.
+        #     -Dsonar.projectKey=poc-testing-nodejs
+        #     -Dsonar.projectName=poc-testing-nodejs
+        #     -Dsonar.sourceEncoding=UTF-8
+        #     -Dsonar.sources=./
+        #     -Dsonar.projectVersion=${{ github.run_number }}
+        #     -Dsonar.exclusions=node_modules/**/*
+        #     -Dsonar.projectVersion=${{ github.run_number }}
+        #     -Dsonar.java.binaries=.
 
   sonarqube-quality-gate:
     needs: sonarqube-analysis
@@ -37,10 +69,12 @@ jobs:
     steps:
       - name: Check out code
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: SonarQube Quality Gate
         uses: sonarsource/sonarqube-quality-gate-action@master
-        timeout-minutes: 5
+        timeout-minutes: 2
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
