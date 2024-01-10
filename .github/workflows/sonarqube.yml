@@ -46,16 +46,16 @@ jobs:
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
           SONAR_HOST_URL: ${{ env.hostname }}
-        with:
-          args: >
-            -Dsonar.projectKey=poc-testing-nodejs
-            -Dsonar.projectName=poc-testing-nodejs
-            -Dsonar.sourceEncoding=UTF-8
-            -Dsonar.sources=./
-            -Dsonar.projectVersion=${{ github.run_number }} 
-            -Dsonar.exclusions=node_modules/**/*
-            -Dsonar.projectVersion=${{ github.run_number }}
-            -Dsonar.java.binaries=.
+        # with:
+        #   args: >
+        #     -Dsonar.projectKey=poc-testing-nodejs
+        #     -Dsonar.projectName=poc-testing-nodejs
+        #     -Dsonar.sourceEncoding=UTF-8
+        #     -Dsonar.sources=./
+        #     -Dsonar.projectVersion=${{ github.run_number }}
+        #     -Dsonar.exclusions=node_modules/**/*
+        #     -Dsonar.projectVersion=${{ github.run_number }}
+        #     -Dsonar.java.binaries=.
 
   sonarqube-quality-gate:
     needs: sonarqube-analysis
