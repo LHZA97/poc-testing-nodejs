@@ -31,24 +31,21 @@ jobs:
     runs-on: ubuntu-latest
     needs: jest-tests
     permissions: read-all
-    env:
-      hostname: ${{ secrets.SONAR_HOST_URL }}
-    environment:
-      name: sonarqube
-      url: ${{ env.hostname }}/dashboard?id=${{env.project_id}}
+    # env:
+    #   hostname: ${{ secrets.SONAR_HOST_URL }}
+    # environment:
+    #   name: sonarqube
+    #   url: ${{ env.hostname }}/dashboard?id=${{env.project_id}}
     steps:
-      - name: Set Project ID
-        id: set-project-id
-        run: |
-          repo_full_name="${{ github.repository }}"
-          repo_name=$(basename $repo_full_name)
-          echo "Repository Name: $repo_name"
-          echo "project_id=$repo_name" >> $GITHUB_ENV
+      - name: Checkout code
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0 # Shallow clones should be disabled for a better relevancy of analysis
       - name: SonarQube Scan
         uses: sonarsource/sonarqube-scan-action@master
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-          SONAR_HOST_URL: ${{ env.hostname }}
+          SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
         with:
           args: >
             -Dsonar.projectKey=LHZA97_poc-testing-nodejs_AYzxoyeny1DwTTyWH5LS
