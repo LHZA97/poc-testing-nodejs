@@ -32,6 +32,8 @@ jobs:
 
         # Run the POSTMAN collection
       - name: Run Postman Tests
+        env:
+          POSTMAN_API_KEY: ${{ secrets.POSTMAN_API_KEY }}
         run: |
           echo "Running Postman tests..."
           newman run VetApp.postman_collection.json -r htmlextra --reporter-htmlextra-export testResults/htmlreport.html --reporter-htmlextra-darkTheme  > testResults/runreport1.html
