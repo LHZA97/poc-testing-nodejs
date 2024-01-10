@@ -65,6 +65,7 @@ jobs:
   sonarqube-quality-gate:
     needs: sonarqube-analysis
     runs-on: ubuntu-latest
+    permissions: read-all
 
     steps:
       - name: Check out code
@@ -74,6 +75,8 @@ jobs:
 
       - name: SonarQube Quality Gate
         uses: sonarsource/sonarqube-quality-gate-action@master
+        with:
+          scanMetadataReportFile: target/sonar/report-task.txt
         timeout-minutes: 2
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
