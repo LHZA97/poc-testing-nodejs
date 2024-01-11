@@ -1,3 +1,4 @@
 node_modules/
 coverage
 testResults
+jest-coverage-report 
