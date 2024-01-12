@@ -52,14 +52,36 @@ jobs:
   #         name: PostmanApiTestResults
   #         path: testResults
 
-  katalon-test-api:
-    runs-on: windows-latest
+  # katalon-test-api:
+  #   runs-on: windows-latest
+  #   steps:
+  #     - name: Checkout
+  #       uses: actions/checkout@v2
+  #     - name: Katalon Studio Github Action
+  #       uses: katalon-studio/katalon-studio-github-action@v2
+  #       with:
+  #         version: "7.5.5"
+  #         projectPath: "${{ github.workspace }}"
+  #         args: 'katalonc -noSplash -retry=0 -testSuiteCollectionPath="Test Suites/Pet Flow" -apiKey= ${{ secrets.KATALON_API_KEY }} --config -webui.autoUpdateDrivers=true'
+
+  katalon-test-ubuntu:
+    runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-      - name: Katalon Studio Github Action
-        uses: katalon-studio/katalon-studio-github-action@v2
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: Set up JDK
+        uses: actions/setup-java@v3
         with:
-          version: "7.5.5"
-          projectPath: "${{ github.workspace }}"
-          args: 'katalonc -noSplash -retry=0 -testSuiteCollectionPath="Test Suites/Pet Flow" -apiKey= ${{ secrets.KATALON_API_KEY }} --config -webui.autoUpdateDrivers=true'
+          distribution: "adopt"
+          java-version: "18"
+
+      - name: Install Katalon Studio
+        run: |
+          wget -O Katalon_Studio_Linux.tar.gz [KATALON_DOWNLOAD_URL]
+          tar -xzvf Katalon_Studio_Linux.tar.gz
+
+      - name: Run Katalon Studio Tests
+        run: |
+          ./katalonc -projectPath=./Pet -testSuitePath="Test Suites/Pet Flow" -apiKey=${{ secrets.KATALON_API_KEY }}
