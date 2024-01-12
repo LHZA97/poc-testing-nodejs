@@ -1,0 +1,20 @@
+version: "3.2"
+services:
+  katalon-agent:
+    image: "katalonstudio/agent:latest"
+    restart: always
+    deploy:
+      mode: replicated
+      replicas: 1
+    environment:
+      SERVER_URL: https://testops.katalon.io
+      KATALON_USERNAME: luqmanulhakim4397@gmail.com
+      AGENT_NAME: my_docker_agent
+      ORGANIZATION_ID: 1369383
+      KATALON_API_KEY: 4064b8c3-2fe0-4928-9a0d-6e7f1c53a908
+      AUTO_UPGRADE_ENVIRONMENT: true
+    volumes:
+      - katalon-runtime-engines:/root/.katalon
+
+volumes:
+  katalon-runtime-engines:
