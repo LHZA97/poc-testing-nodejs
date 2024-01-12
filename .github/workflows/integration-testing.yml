@@ -53,7 +53,7 @@ jobs:
   #         path: testResults
 
   katalon-test-api:
-    runs-on: ubuntu-latest
+    runs-on: window-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -62,7 +62,7 @@ jobs:
         with:
           version: "7.5.5"
           projectPath: "${{ github.workspace }}"
-          args: 'katalonc -noSplash -retry=0 -testSuiteCollectionPath="Test Suites/Pet Flow" -apiKey= ${{ secrets.KATALON_API_KEY }} --config -webui.autoUpdateDrivers=true'
+          args: 'katalonc -noSplash -retry=0 -projectPath="./Pet" -testSuiteCollectionPath="Test Suites/Pet Flow" -apiKey= ${{ secrets.KATALON_API_KEY }} --config -webui.autoUpdateDrivers=true'
 
   # katalon-test-ubuntu:
   #   runs-on: ubuntu-latest
