@@ -66,7 +66,7 @@ jobs:
         uses: katalon-studio/katalon-studio-github-action@v2
         with:
           version: "7.5.5"
-          projectPath: "${{ github.workspace }}"
+          projectPath: "${{ github.workspace }}/Pet/My First API Project"
           args: 'katalonc -noSplash -retry=0 -testSuiteCollectionPath="Test Suites/Pet Flow" -apiKey= ${{ secrets.KATALON_API_KEY }} --config -webui.autoUpdateDrivers=true'
 
   # katalon-test-ubuntu:
