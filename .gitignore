@@ -1,4 +1,4 @@
 node_modules/
-coverage
-testResults
-jest-coverage-report 
+# coverage
+# testResults
+# jest-coverage-report 
