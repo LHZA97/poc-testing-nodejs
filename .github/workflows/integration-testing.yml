@@ -60,7 +60,7 @@ jobs:
 
       - name: List folder and files
         run: |
-          dir  -l
+          dir
 
       - name: Katalon Studio Github Action
         uses: katalon-studio/katalon-studio-github-action@v2
