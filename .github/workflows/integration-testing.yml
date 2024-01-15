@@ -65,7 +65,7 @@ jobs:
       - name: Katalon Studio Github Action
         uses: katalon-studio/katalon-studio-github-action@v2
         with:
-          version: "7.5.5"
+          version: "9.2.0"
           projectPath: "${{ github.workspace }}/Pet/My First API Project.prj"
           args: katalonc -noSplash -retry=0 -testSuitePath="Test Suites/Pet Flow" -browserType="Web Service" -executionProfile="default"  -apiKey= ${{ secrets.KATALON_API_KEY }} -orgID=1369383 -testOpsProjectId=1341450 --config -proxy.auth.option=NO_PROXY -proxy.system.option=NO_PROXY -proxy.system.applyToDesiredCapabilities=true -webui.autoUpdateDrivers=true
 
