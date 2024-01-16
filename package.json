@@ -7,15 +7,35 @@
   "scripts": {
     "start": "node src/index.js",
     "dev": "nodemon src/index.js",
-    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js --runInBand --detectOpenHandles --forceExit"
+    "bump-version": "npm version patch",
+    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js --coverage --reporters=default jest-junit --runInBand --detectOpenHandles --forceExit"
   },
   "jest": {
-    "coverageDirectory": "coverage",
-    "collectCoverage": true,
     "coverageReporters": [
-      "lcov"
+      "lcov",
+      "text",
+      "cobertura",
+      "html",
+      "jest-junit",
+      "json"
     ],
-    "transform": {}
+    "coverageDirectory": "./coverage",
+    "collectCoverage": true,
+    "collectCoverageFrom": [
+      "src/**/*.js"
+    ],
+    "coverageThreshold": {
+      "global": {
+        "branches": 80,
+        "functions": 80,
+        "lines": 80,
+        "statements": 80
+      }
+    }
+  },
+  "jest-junit": {
+    "outputDirectory": "./coverage",
+    "outputName": "junit.xml"
   },
   "repository": {
     "type": "git",
