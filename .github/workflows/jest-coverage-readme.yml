@@ -1,10 +1,8 @@
 name: Jest Update Coverage in README
 
 on:
-  workflow_run:
-    workflows: ["Jest Coverage Comment"]
-    types:
-      - completed
+  push:
+    branches: [jest-testing]
 
 jobs:
   update-coverage-in-readme:
