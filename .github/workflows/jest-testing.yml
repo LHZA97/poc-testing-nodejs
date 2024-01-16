@@ -1,7 +1,7 @@
 name: Jest Testing and Coverage
 on:
   push:
-    branches: [jest-testing]
+    branches: [main]
 
 jobs:
   update-coverage-in-readme:
