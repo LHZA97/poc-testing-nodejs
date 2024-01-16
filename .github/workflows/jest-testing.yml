@@ -1,7 +1,7 @@
 name: Jest Testing and Coverage
 on:
   push:
-    branches: [main]
+    branches: [jest-testing]
 
 jobs:
   update-coverage-in-readme:
@@ -24,7 +24,7 @@ jobs:
         run: npm ci
 
       - name: Run Tests
-        run: npm run test:coverage | tee ./coverage.txt
+        run: npm test
 
       - name: Jest Coverage Comment
         id: coverageComment

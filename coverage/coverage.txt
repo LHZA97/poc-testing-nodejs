@@ -1,0 +1,14 @@
+
+> poc-testing-nodejs@1.0.0 test
+> node --experimental-vm-modules node_modules/jest/bin/jest.js --coverage --reporters=default jest-junit --coverageReporters=json-summary --runInBand --detectOpenHandles --forceExit
+
+  console.log
+    Server is running on port 3000
+
+      at Server.log (src/index.js:28:11)
+
+  console.log
+    Connected to MongoDB Atlas
+
+      at NativeConnection.log (src/index.js:17:11)
+

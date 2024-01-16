@@ -1,7 +1,7 @@
 name: Jest Coverage Comment
 on:
   push:
-    branches: [jest-testing]
+    branches: [main]
 
 jobs:
   build:
