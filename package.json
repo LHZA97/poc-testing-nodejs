@@ -1,14 +1,12 @@
 {
   "name": "poc-testing-nodejs",
-  "version": "1.0.1",
+  "version": "1.0.0",
   "description": "poc testing for end to end testing",
   "main": "index.js",
   "type": "module",
   "scripts": {
     "start": "node src/index.js",
     "dev": "nodemon src/index.js",
-    "format-check": "prettier --check **/*.ts",
-    "lint": "eslint **/*.ts",
     "bump-version": "npm version patch",
     "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js --runInBand --detectOpenHandles --forceExit"
   },
