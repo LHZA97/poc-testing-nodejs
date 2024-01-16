@@ -1,0 +1,22 @@
+name: Katalon API Testing
+on:
+  push:
+    branches: [katalon-api-testing]
+
+jobs:
+  katalon-test-api:
+    runs-on: windows-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: List folder and files
+        run: |
+          dir
+
+      - name: Katalon Studio Github Action
+        uses: katalon-studio/katalon-studio-github-action@v3
+        with:
+          version: "9.2.0"
+          projectPath: "${{ github.workspace }}/Pet Project/My First API Project.prj"
+          args: katalonc -noSplash -retry=0 -testSuitePath="Test Suites/Run Test" -browserType="Web Service" -executionProfile="default"  -apiKey= ${{ secrets.KATALON_API_KEY }} -orgID=1369383 -testOpsProjectId=1341450 --config -proxy.auth.option=NO_PROXY -proxy.system.option=NO_PROXY -proxy.system.applyToDesiredCapabilities=true -webui.autoUpdateDrivers=true
