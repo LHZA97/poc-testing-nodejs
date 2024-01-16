@@ -1,17 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuites name="jest tests" tests="6" failures="0" errors="0" time="2.084">
-  <testsuite name="Pet API Tests" errors="0" failures="0" skipped="0" timestamp="2024-01-16T04:35:44" time="2.04" tests="6">
-    <testcase classname="Pet API Tests should create a new pet" name="Pet API Tests should create a new pet" time="1.091">
+<testsuites name="jest tests" tests="6" failures="1" errors="0" time="2.715">
+  <testsuite name="Pet API Tests" errors="0" failures="1" skipped="0" timestamp="2024-01-16T07:25:39" time="2.666" tests="6">
+    <testcase classname="Pet API Tests should create a new pet" name="Pet API Tests should create a new pet" time="1.696">
+      <failure>Error: listen EADDRINUSE: address already in use :::3000
+    at Server.setupListenHandle [as _listen2] (node:net:1872:16)
+    at listenInCluster (node:net:1920:12)
+    at Server.listen (node:net:2008:7)
+    at Function.listen (/Users/00144559luqmanulhakim/Documents/PublicGithub/poc-testing-nodejs/node_modules/express/lib/application.js:635:24)
+    at listen (/Users/00144559luqmanulhakim/Documents/PublicGithub/poc-testing-nodejs/src/index.js:27:5)
+    at SourceTextModule.evaluate (node:internal/vm/module:228:23)
+    at Runtime.linkAndEvaluateModule (/Users/00144559luqmanulhakim/Documents/PublicGithub/poc-testing-nodejs/node_modules/jest-runtime/build/index.js:710:20)
+    at jestAdapter (/Users/00144559luqmanulhakim/Documents/PublicGithub/poc-testing-nodejs/node_modules/jest-circus/build/legacy-code-todo-rewrite/jestAdapter.js:75:5)
+    at runTestInternal (/Users/00144559luqmanulhakim/Documents/PublicGithub/poc-testing-nodejs/node_modules/jest-runner/build/runTest.js:367:16)
+    at runTest (/Users/00144559luqmanulhakim/Documents/PublicGithub/poc-testing-nodejs/node_modules/jest-runner/build/runTest.js:444:34)</failure>
     </testcase>
-    <testcase classname="Pet API Tests should get all pets" name="Pet API Tests should get all pets" time="0.107">
+    <testcase classname="Pet API Tests should get all pets" name="Pet API Tests should get all pets" time="0.066">
     </testcase>
-    <testcase classname="Pet API Tests should get a pet by id" name="Pet API Tests should get a pet by id" time="0.059">
+    <testcase classname="Pet API Tests should get a pet by id" name="Pet API Tests should get a pet by id" time="0.049">
     </testcase>
-    <testcase classname="Pet API Tests should update a pet" name="Pet API Tests should update a pet" time="0.064">
+    <testcase classname="Pet API Tests should update a pet" name="Pet API Tests should update a pet" time="0.06">
     </testcase>
-    <testcase classname="Pet API Tests should delete a pet" name="Pet API Tests should delete a pet" time="0.087">
+    <testcase classname="Pet API Tests should delete a pet" name="Pet API Tests should delete a pet" time="0.063">
     </testcase>
-    <testcase classname="Pet API Tests should handle not found for getting a deleted pet" name="Pet API Tests should handle not found for getting a deleted pet" time="0.058">
+    <testcase classname="Pet API Tests should handle not found for getting a deleted pet" name="Pet API Tests should handle not found for getting a deleted pet" time="0.067">
     </testcase>
   </testsuite>
 </testsuites>

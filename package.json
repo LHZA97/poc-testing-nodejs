@@ -8,7 +8,7 @@
     "start": "node src/index.js",
     "dev": "nodemon src/index.js",
     "bump-version": "npm version patch",
-    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js --coverage --reporters=default jest-junit --coverageReporters=json-summary --runInBand --detectOpenHandles --forceExit"
+    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js --coverage --reporters=default jest-junit --runInBand --detectOpenHandles --forceExit"
   },
   "jest": {
     "coverageReporters": [
