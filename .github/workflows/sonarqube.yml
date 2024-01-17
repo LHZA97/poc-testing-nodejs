@@ -1,4 +1,4 @@
-name: CI/CD with SonarQube
+name: SonarQube Coverage
 
 on:
   push:
@@ -53,6 +53,10 @@ jobs:
             -Dsonar.projectKey=LHZA97_poc-testing-nodejs_AYzxoyeny1DwTTyWH5LS
             -Dsonar.sources=.
             -Dsonar.javascript.lcov.reportPaths=./coverage/lcov.info
+      - name: Debug
+        run: |
+          ls -R
+          cat .scannerwork/report-task.txt || echo "File not found"
 
   sonarqube-quality-gate:
     needs: sonarqube-analysis
