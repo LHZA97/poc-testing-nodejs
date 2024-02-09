@@ -1,0 +1,34 @@
+name: Fetch File from Another Repository
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  fetch-file:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout current repository
+      uses: actions/checkout@v3
+
+    - name: Checkout another repository
+      uses: actions/checkout@v3
+      with:
+        repository: LHZA97/poc-testing-springboo  # Replace with the username and repository name
+        ref: main  # Replace with the branch or tag you want to fetch
+
+    - name: Copy file from another repository
+      run: cp pom.xml 
+
+  checkout-another-repo:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout current repository
+      uses: actions/checkout@v3
+
+    - name: Checkout another repository
+      run : ls -al
+      
