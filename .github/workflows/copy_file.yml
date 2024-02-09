@@ -10,6 +10,9 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
     - name: Fetch file from another repository
       run: |
         curl -H "Authorization: Bearer ${{ secrets.SECRET_SPRINGBOOT }}" -LJO https://github.com/LHZA97/poc-testing-springboot.git/pom.xml
