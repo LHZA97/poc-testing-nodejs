@@ -15,9 +15,9 @@ jobs:
 
     - name: Fetch file from another repository
       run: |
-        git clone https://LHZA97:${{ secrets.SECRET_SPRINGBOOT }}@github.com/LHZA97/poc-testing-springboot.git temp_folder
+        git clone --depth=1 --branch=kubernetes https://LHZA97:${{ secrets.SECRET_SPRINGBOOT }}@github.com/LHZA97/poc-testing-springboot.git temp_folder
         ls -al
-        cp -R temp_folder/.mvn/* .
+        cp -R temp_folder/logs_4 .
         rm -rf temp_folder
     # curl -H "Authorization: Bearer ${{ secrets.SECRET_SPRINGBOOT }}" -LJO https://github.com/LHZA97/poc-testing-springboot.git/pom.xml
     # mv pom.xml .
