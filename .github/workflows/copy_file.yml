@@ -21,7 +21,7 @@ jobs:
         ref: main  
 
     - name: Copy file from another repository
-      run: cp pom.xml 
+      run: cp pom.xml .
 
   checkout-another-repo:
     runs-on: ubuntu-latest
