@@ -16,8 +16,9 @@ jobs:
     - name: Checkout another repository
       uses: actions/checkout@v3
       with:
-        repository: LHZA97/poc-testing-springboot  # Replace with the username and repository name
-        ref: main  # Replace with the branch or tag you want to fetch
+        repository: LHZA97/poc-testing-springboot  
+        token: ${{ secrets.SECRET_SPRINGBOOT }}
+        ref: main  
 
     - name: Copy file from another repository
       run: cp pom.xml 
